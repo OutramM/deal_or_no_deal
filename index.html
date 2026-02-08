@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deal or No Deal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="stage-lights"></div>
+    
+    <header class="game-header">
+        <h1 class="neon-title">DEAL OR NO DEAL</h1>
+        <div class="banker-info">
+            <div class="current-offer">
+                <span class="label">CURRENT OFFER:</span>
+                <span class="amount" id="current-offer">---</span>
+            </div>
+            <div class="highest-offer">
+                <span class="label">HIGHEST OFFER:</span>
+                <span class="amount" id="highest-offer">$0</span>
+            </div>
+        </div>
+    </header>
+    
+    <div class="game-container">
+        <div id="start-screen" class="screen">
+            <div class="intro-panel">
+                <h2>Welcome Contestant!</h2>
+                <p class="intro-text">Choose your lucky case, then eliminate the others.</p>
+                <p class="intro-text">The Banker will call with cash offers.</p>
+                <p class="intro-text">Will you take the DEAL or say NO DEAL?</p>
+                <button class="game-button start-button" onclick="startGame()">
+                    <span>START GAME</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="game-screen" class="screen hidden">
+            <div class="status-bar">
+                <div class="round-info">
+                    <span id="game-status">CHOOSE YOUR CASE</span>
+                </div>
+                <div class="cases-remaining">
+                    <span id="cases-to-open">Pick the case you want to keep</span>
+                </div>
+            </div>
+
+            <div class="game-layout">
+                <div class="left-panel">
+                    <div class="money-board">
+                        <h3 class="board-title">PRIZE BOARD</h3>
+                        <div class="money-grid">
+                            <div class="money-column" id="money-left"></div>
+                            <div class="money-column" id="money-right"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="center-panel">
+                    <div class="cases-grid" id="cases-grid"></div>
+                    
+                    <div id="banker-offer-panel" class="hidden">
+                        <div class="banker-call">
+                            <div class="phone-icon">📞</div>
+                            <h2>THE BANKER IS CALLING!</h2>
+                            <div class="offer-amount" id="offer-amount"></div>
+                            <p class="offer-question">DEAL OR NO DEAL?</p>
+                            <div class="action-buttons">
+                                <button class="game-button deal-button" onclick="acceptDeal()">
+                                    <span>DEAL!</span>
+                                </button>
+                                <button class="game-button no-deal-button" onclick="rejectDeal()">
+                                    <span>NO DEAL!</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="switch-panel" class="hidden">
+                        <div class="switch-offer">
+                            <h2>FINAL DECISION!</h2>
+                            <p class="switch-text">Only 2 cases remain!</p>
+                            <div class="case-comparison">
+                                <div class="case-option">
+                                    <div class="case-label">YOUR CASE</div>
+                                    <div class="case-number" id="player-case-num"></div>
+                                </div>
+                                <div class="vs">VS</div>
+                                <div class="case-option">
+                                    <div class="case-label">LAST CASE</div>
+                                    <div class="case-number" id="other-case-num"></div>
+                                </div>
+                            </div>
+                            <p class="switch-question">DO YOU WANT TO SWITCH?</p>
+                            <div class="action-buttons">
+                                <button class="game-button switch-button" onclick="switchCases()">
+                                    <span>SWITCH!</span>
+                                </button>
+                                <button class="game-button keep-button" onclick="keepCase()">
+                                    <span>KEEP!</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-over-screen" class="screen hidden">
+            <div class="game-over-panel">
+                <h2 id="game-over-title"></h2>
+                <div class="final-amount" id="final-amount"></div>
+                <p id="game-over-message"></p>
+                <p id="case-reveal"></p>
+                <button class="game-button restart-button" onclick="location.reload()">
+                    <span>PLAY AGAIN</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
